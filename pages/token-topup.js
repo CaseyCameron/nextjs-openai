@@ -2,9 +2,19 @@ import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { AppLayout } from '../components/AppLayout';
 
 export default function TokenTopup() {
-  return <div>
-    <h1>Token Topup Page</h1>
-  </div>;
+  const handleClick = async () => {
+    await fetch('/api/addTokens', {
+      method: 'POST',
+    });
+  };
+  return (
+    <div>
+      <h1>Token Topup Page</h1>
+      <button className="btn" onClick={handleClick}>
+        Add Tokens
+      </button>
+    </div>
+  );
 }
 
 TokenTopup.getLayout = function getLayout(page, pageProps) {
